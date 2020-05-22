@@ -10,9 +10,9 @@ import reactor.core.publisher.Mono;
 
 /**
  * 自定义一个全局过滤器
- *      实现 globalfilter , ordered接口
+ *      实现 globalFilter , ordered接口
  */
-//@Component
+//@Component       // component注解将自定义filter交给spring管理,使该注解生效
 public class LoginFilter implements GlobalFilter,Ordered {
 
 	/**

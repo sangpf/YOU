@@ -31,5 +31,4 @@ public class ProductController {
 		productService.save(product);
 		return "保存成功";
 	}
-
 }

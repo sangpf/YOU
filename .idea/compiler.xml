@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka_server" />
-        <module name="import_test" />
         <module name="api_gateway_server" />
         <module name="product_service" />
         <module name="order_service" />
@@ -19,8 +18,8 @@
       <module name="eureka_server" target="1.8" />
       <module name="import_test" target="1.8" />
       <module name="order_service" target="1.8" />
-      <module name="product_service" target="1.8" />
-      <module name="spring_cloud_demo" target="1.8" />
+      <module name="product_service" target="8" />
+      <module name="YOU" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -12,7 +12,6 @@
         <module>product_service</module>
         <module>order_service</module>
         <module>eureka_server</module>
-        <module>import_test</module>
         <module>api_gateway_server</module>
     </modules>
 
@@ -31,10 +30,6 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
         <dependency>
@@ -49,7 +44,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
 
     <dependencyManagement>
         <dependencies>

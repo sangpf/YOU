@@ -10,13 +10,13 @@ spring:
   cloud: #配置SpringCloudGateway的路由
     gateway:
       routes:
-      - id: order-service
+      - id: order-service     # 路由1 --->
         uri: lb://service-order
         predicates:
         - Path=/order-service/**
         filters:
         - RewritePath=/order-service/(?<segment>.*), /$\{segment}
-      - id: product-service
+      - id: product-service   # 路由2 --->
         uri: lb://service-product
         predicates:
         - Path=/product-service/**
@@ -30,16 +30,16 @@ spring:
 #            # 令牌桶的上限
 #            redis-rate-limiter.burstCapacity: 3
         - RewritePath=/product-service/(?<segment>.*), /$\{segment}
-
+  # 令牌桶算法 基于Filter的限流参数介绍--:
   # RequestRateLimiter : 使用限流过滤器,是springcloud gateway提供的
   # 参数  replenishRate : 向令牌桶中填充的速率
-  #     burstCapacity :令牌桶的容量
+  #      burstCapacity :令牌桶的容量
 
   #修改zipkin使用rabbitmq采集数据
   zipkin:
     #base-url: http://127.0.0.1:9411/  #server的请求地址
     sender:
-      #type: web #数据的传输方式 , 已http的形式向server端发送数据
+      #type: web #数据的传输方式 , 以http的形式向server端发送数据
       type: rabbit #向rabbitmq中发送消息
   sleuth:
     sampler:

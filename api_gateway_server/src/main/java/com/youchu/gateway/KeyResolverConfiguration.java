@@ -6,22 +6,26 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+/**
+ *
+ * @Configuration 标注在类上，相当于把该类作为spring的xml配置文件中的<beans>，作用为：配置spring容器(应用上下文)
+ * @Bean 等价于<Bean></Bean>
+ *
+ */
 @Configuration
 public class KeyResolverConfiguration {
 
 	/**
-	 * 编写基于请求路径的限流规则
-	 *  //abc
-	 *  //基于请求ip 127.0.0.1
-	 *  //基于参数
+	 * 编写基于请求路径的限流规则  /abc
+	 * 基于请求ip 127.0.0.1
+	 * 基于参数
 	 */
-	//@Bean
+	//@Bean     // 使用bean注解声明成对象
 	public KeyResolver pathKeyResolver() {
 		//自定义的KeyResolver
-		return new KeyResolver() {
+		return new KeyResolver(){
 			/**
-			 * ServerWebExchange :
-			 *      上下文参数
+			 * ServerWebExchange : 上下文参数
 			 */
 			public Mono<String> resolve(ServerWebExchange exchange) {
 				return Mono.just( exchange.getRequest().getPath().toString());
@@ -32,14 +36,14 @@ public class KeyResolverConfiguration {
 	/**
 	 * 基于请求参数的限流
 	 *
-	 *  请求 abc ? userId=1
+	 *  请求 abc ? userId = 1
 	 */
 	@Bean
 	public KeyResolver userKeyResolver() {
-
 		return exchange -> Mono.just(
-				exchange.getRequest().getQueryParams().getFirst("userId")
-				//exchange.getRequest().getHeaders().getFirst("X-Forwarded-For") 基于请求ip的限流
+				exchange.getRequest().getQueryParams().getFirst("userId")     // 基于请求参数的限流
+				//exchange.getRequest().getHeaders().getFirst("X-Forwarded-For") // 基于请求ip的限流
 		);
 	}
+
 }
